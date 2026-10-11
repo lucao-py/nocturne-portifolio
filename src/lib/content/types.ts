@@ -1,7 +1,11 @@
+import type { PortableTextProps } from "@portabletext/react";
+
 export type ContentImage = {
   src: string;
   alt: string;
   caption?: string;
+  width?: number;
+  height?: number;
 };
 
 export type TextSpan = {
@@ -17,7 +21,8 @@ export type ContentBlock =
   | { type: "list"; ordered: boolean; items: string[] }
   | { type: "quote"; text: string }
   | { type: "code"; code: string; language?: string }
-  | { type: "image"; image: ContentImage };
+  | { type: "image"; image: ContentImage }
+  | { type: "portableText"; value: NonNullable<PortableTextProps["value"]> };
 
 export type ProjectCategory = "analytics" | "data-engineering" | "machine-learning" | "ai";
 

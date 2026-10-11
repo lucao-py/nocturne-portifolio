@@ -6,7 +6,6 @@ import { ContentBody } from "@/components/ui/content-body";
 import { TagList } from "@/components/ui/tag-list";
 import { formatPublishedDate } from "@/lib/content/format";
 import { getArticleBySlug, getProjectsForArticle } from "@/lib/content/repository";
-
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -37,7 +36,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {article.coverImage ? (
         <figure className="detail-cover">
-          <Image src={article.coverImage.src} alt={article.coverImage.alt} width={1600} height={900} sizes="(max-width: 900px) 100vw, 900px" />
+          <Image src={article.coverImage.src} alt={article.coverImage.alt} width={article.coverImage.width ?? 1600} height={article.coverImage.height ?? 900} sizes="(max-width: 900px) 100vw, 900px" />
           {article.coverImage.caption ? <figcaption>{article.coverImage.caption}</figcaption> : null}
         </figure>
       ) : null}

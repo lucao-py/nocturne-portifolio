@@ -3,10 +3,9 @@ import { ArticleCard } from "@/components/articles/article-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Pagination } from "@/components/ui/pagination";
 import { listArticles, parsePage } from "@/lib/content/repository";
-
 export const metadata: Metadata = {
   title: "Artigos — Lucas de Oliveira Santos",
-  description: "Estrutura de artigos do portfólio de Lucas de Oliveira Santos. Os registros atuais são exemplos fictícios.",
+  description: "Artigos técnicos publicados por Lucas de Oliveira Santos.",
 };
 
 export default async function ArticlesPage({ searchParams }: {
@@ -20,7 +19,7 @@ export default async function ArticlesPage({ searchParams }: {
       <header className="content-page__header">
         <p className="content-page__eyebrow">Portfólio / Artigos</p>
         <h1>Artigos</h1>
-        <p>Os registros abaixo são exemplos fictícios usados para validar leitura e navegação.</p>
+        <p>Artigos técnicos sobre dados, engenharia de dados, machine learning e inteligência artificial.</p>
       </header>
 
       {items.length ? (

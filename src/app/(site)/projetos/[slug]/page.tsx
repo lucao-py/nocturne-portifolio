@@ -7,7 +7,6 @@ import { TagList } from "@/components/ui/tag-list";
 import { getArticlesForProject, getProjectBySlug } from "@/lib/content/repository";
 import { isValidExternalUrl } from "@/lib/content/urls";
 import { projectCategoryLabels } from "@/lib/content/types";
-
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -43,7 +42,7 @@ export default async function ProjectPage({ params }: Props) {
 
       {project.coverImage ? (
         <figure className="detail-cover">
-          <Image src={project.coverImage.src} alt={project.coverImage.alt} width={1600} height={900} sizes="(max-width: 900px) 100vw, 900px" />
+          <Image src={project.coverImage.src} alt={project.coverImage.alt} width={project.coverImage.width ?? 1600} height={project.coverImage.height ?? 900} sizes="(max-width: 900px) 100vw, 900px" />
           {project.coverImage.caption ? <figcaption>{project.coverImage.caption}</figcaption> : null}
         </figure>
       ) : null}
@@ -62,7 +61,7 @@ export default async function ProjectPage({ params }: Props) {
         <section className="detail-gallery" aria-label="Imagens do projeto">
           {project.images.map((image) => (
             <figure key={image.src}>
-              <Image src={image.src} alt={image.alt} width={1200} height={675} sizes="(max-width: 900px) 100vw, 900px" />
+              <Image src={image.src} alt={image.alt} width={image.width ?? 1200} height={image.height ?? 675} sizes="(max-width: 900px) 100vw, 900px" />
               {image.caption ? <figcaption>{image.caption}</figcaption> : null}
             </figure>
           ))}

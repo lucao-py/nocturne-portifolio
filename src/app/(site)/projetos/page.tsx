@@ -3,10 +3,9 @@ import { ProjectCard } from "@/components/projects/project-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Pagination } from "@/components/ui/pagination";
 import { listProjects, parsePage } from "@/lib/content/repository";
-
 export const metadata: Metadata = {
   title: "Projetos — Lucas de Oliveira Santos",
-  description: "Estrutura de projetos do portfólio de Lucas de Oliveira Santos. Os registros atuais são exemplos fictícios.",
+  description: "Projetos publicados por Lucas de Oliveira Santos em dados, engenharia de dados, machine learning e inteligência artificial.",
 };
 
 export default async function ProjectsPage({ searchParams }: {
@@ -20,7 +19,7 @@ export default async function ProjectsPage({ searchParams }: {
       <header className="content-page__header">
         <p className="content-page__eyebrow">Portfólio / Projetos</p>
         <h1>Projetos</h1>
-        <p>Os registros abaixo são exemplos fictícios usados para validar a navegação e a apresentação.</p>
+        <p>Projetos publicados sobre dados, engenharia de dados, machine learning e inteligência artificial.</p>
       </header>
 
       {items.length ? (

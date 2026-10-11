@@ -9,4 +9,36 @@
   --mist: #aab8cb;
   --paper: #e9edf2;
   --outline: #294052;
+
+  --surface-base: var(--bg-0);
+  --surface-panel: var(--bg-1);
+  --surface-raised: var(--bg-2);
+  --text-primary: var(--paper);
+  --text-secondary: var(--mist);
+  --text-accent: var(--moon-cyan);
+  --border-subtle: rgb(170 184 203 / 18%);
+  --border-interactive: rgb(243 77 71 / 60%);
+  --accent-primary: var(--neon-red);
+  --accent-primary-hover: #ff6a63;
+  --focus-ring: var(--moon-cyan);
+
+  --font-body: var(--font-manrope), Arial, Helvetica, sans-serif;
+  --font-display: var(--font-cinzel), Georgia, serif;
+  --text-display: clamp(3.25rem, 7vw, 6.25rem);
+  --text-lead: clamp(1.0625rem, 1.8vw, 1.25rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.75rem;
+  --shadow-panel: 0 22px 80px rgb(0 0 0 / 24%);
+  --glow-accent: 0 0 30px rgb(243 77 71 / 38%);
 }

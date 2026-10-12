@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
 import type { PointerEvent } from "react";
 import { portfolioContent } from "@/content/portfolio";
@@ -87,6 +88,18 @@ export function Hero() {
             <Link className="site-action site-action--primary" href="#projetos">{hero.projectsCta}</Link>
             <Link className="site-action site-action--secondary" href="#artigos">{hero.articlesCta}</Link>
           </div>
+        </div>
+        <div className="hero__portrait">
+          <Image
+            className="hero__portrait-image"
+            src="/images/hero/lucas-pixel-hero.png"
+            alt="Retrato de Lucas de Oliveira Santos em pixel art"
+            width={1254}
+            height={1254}
+            sizes="(max-width: 767px) 68vw, (max-width: 1023px) 38vw, 430px"
+            preload
+            unoptimized
+          />
         </div>
       </div>
 

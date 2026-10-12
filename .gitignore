@@ -21,4 +21,5 @@ yarn-error.log*
 .vercel/
 /portfolio-lucas-gotham-pixel-noir/
 /images/hero/
-/public/images/hero/
+/public/images/hero/*
+!/public/images/hero/lucas-pixel-hero.png

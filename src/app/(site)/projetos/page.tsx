@@ -4,7 +4,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { Pagination } from "@/components/ui/pagination";
 import { listProjects, parsePage } from "@/lib/content/repository";
 export const metadata: Metadata = {
-  title: "Projetos — Lucas de Oliveira Santos",
+  title: "Projetos",
   description: "Projetos publicados por Lucas de Oliveira Santos em dados, engenharia de dados, machine learning e inteligência artificial.",
 };
 

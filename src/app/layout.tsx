@@ -7,7 +7,7 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", displa
 const cinzel = Cinzel({ subsets: ["latin"], variable: "--font-cinzel", display: "swap" });
 
 export const metadata: Metadata = {
-  title: `${portfolioContent.ownerName} — Portfólio`,
+  title: { default: "Lucas Santos", template: "%s | Lucas Santos" },
   description: `Portfólio pessoal de ${portfolioContent.ownerName}.`,
 };
 

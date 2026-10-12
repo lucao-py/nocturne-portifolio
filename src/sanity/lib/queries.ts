@@ -34,6 +34,14 @@ const articleCardFields = `
 export const projectCountQuery = `count(*[_type == "project" && defined(slug.current)])`;
 export const articleCountQuery = `count(*[_type == "article" && defined(slug.current)])`;
 
+export const featuredProjectsQuery = `*[_type == "project" && featured == true && defined(slug.current)]
+  | order(publishedAt desc, _createdAt desc, _id asc)[0...3]
+  {${projectCardFields}}`;
+
+export const recentArticlesQuery = `*[_type == "article" && defined(slug.current) && defined(publishedAt)]
+  | order(publishedAt desc, _id asc)[0...3]
+  {${articleCardFields}}`;
+
 export const projectsPageQuery = `*[_type == "project" && defined(slug.current)]
   | order(publishedAt desc, _createdAt desc, _id asc)[$start...$end]
   {${projectCardFields}}`;

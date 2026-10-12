@@ -1,0 +1,62 @@
+.action-link {
+  --action-marker: var(--accent-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: max-content;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid transparent;
+  border-bottom-color: rgb(243 77 71 / 48%);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: var(--font-pixel);
+  font-size: 0.95rem;
+  font-weight: var(--weight-pixel-strong);
+  line-height: var(--leading-pixel-ui);
+  text-decoration: none;
+  transition: background-color var(--pixel-motion-fast) steps(2, end), border-color var(--pixel-motion-fast) steps(2, end), color var(--pixel-motion-fast) steps(2, end);
+}
+
+.action-link::before {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  background: var(--action-marker);
+  content: "";
+  transition: box-shadow var(--pixel-motion-fast) steps(2, end);
+}
+
+.action-link:is(:hover, :focus-visible),
+a:is(:hover, :focus-visible) .action-link {
+  border-bottom-color: var(--accent-primary);
+  background: rgb(243 77 71 / 10%);
+  color: var(--text-primary);
+}
+
+.action-link:is(:hover, :focus-visible)::before,
+a:is(:hover, :focus-visible) .action-link::before {
+  box-shadow: 3px 0 0 var(--action-marker);
+}
+
+.action-link--light {
+  --action-marker: #a1262d;
+  border-bottom-color: #bb7375;
+  color: #242424;
+}
+
+.action-link--light:is(:hover, :focus-visible),
+a:is(:hover, :focus-visible) .action-link--light {
+  border-bottom-color: #a1262d;
+  background: rgb(161 38 45 / 8%);
+  color: #681b20;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .action-link,
+  .action-link::before {
+    transition: none;
+  }
+}

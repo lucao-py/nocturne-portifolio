@@ -10,7 +10,7 @@ export function EmptyState({ title, description, href, linkLabel }: {
     <div className="empty-state" role="status">
       <h2>{title}</h2>
       <p>{description}</p>
-      {href && linkLabel ? <Link href={href}>{linkLabel} <span aria-hidden="true">→</span></Link> : null}
+      {href && linkLabel ? <Link className="action-link" href={href}>{linkLabel}</Link> : null}
     </div>
   );
 }

@@ -19,4 +19,6 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 .vercel/
+/portfolio-lucas-gotham-pixel-noir/
 /images/hero/
+/public/images/hero/

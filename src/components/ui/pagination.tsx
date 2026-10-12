@@ -9,9 +9,9 @@ export function Pagination({ page, totalPages, basePath }: {
 
   return (
     <nav className="pagination" aria-label="Paginação">
-      {page > 1 ? <Link href={page === 2 ? basePath : `${basePath}?page=${page - 1}`}>← Anterior</Link> : <span />}
+      {page > 1 ? <Link className="action-link" href={page === 2 ? basePath : `${basePath}?page=${page - 1}`}>Anterior</Link> : <span />}
       <span>Página {page} de {totalPages}</span>
-      {page < totalPages ? <Link href={`${basePath}?page=${page + 1}`}>Próxima →</Link> : <span />}
+      {page < totalPages ? <Link className="action-link" href={`${basePath}?page=${page + 1}`}>Próxima</Link> : <span />}
     </nav>
   );
 }

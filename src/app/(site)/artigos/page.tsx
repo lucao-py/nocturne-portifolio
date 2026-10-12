@@ -4,7 +4,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { Pagination } from "@/components/ui/pagination";
 import { listArticles, parsePage } from "@/lib/content/repository";
 export const metadata: Metadata = {
-  title: "Artigos — Lucas de Oliveira Santos",
+  title: "Artigos",
   description: "Artigos técnicos publicados por Lucas de Oliveira Santos.",
 };
 

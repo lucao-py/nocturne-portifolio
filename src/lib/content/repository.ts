@@ -7,10 +7,12 @@ import {
   articleCountQuery,
   articlesForProjectQuery,
   articlesPageQuery,
+  featuredProjectsQuery,
   projectBySlugQuery,
   projectCountQuery,
   projectsForArticleQuery,
   projectsPageQuery,
+  recentArticlesQuery,
 } from "@/sanity/lib/queries";
 import type { Article, PageResult, Project } from "./types";
 
@@ -33,7 +35,17 @@ function pageResult<T>(items: T[], page: number, totalItems: number, pageSize: n
 
 function pageRange(page: number, pageSize: number) {
   const start = (page - 1) * pageSize;
-  return { start, end: start + pageSize - 1 };
+  return { start, end: start + pageSize };
+}
+
+export async function listFeaturedProjects(): Promise<Project[]> {
+  const documents = await sanityFetch<SanityProject[]>(featuredProjectsQuery);
+  return documents.flatMap((document) => mapProject(document) ?? []);
+}
+
+export async function listRecentArticles(): Promise<Article[]> {
+  const documents = await sanityFetch<SanityArticle[]>(recentArticlesQuery);
+  return documents.flatMap((document) => mapArticle(document) ?? []);
 }
 
 export async function listProjects(page = 1): Promise<PageResult<Project>> {

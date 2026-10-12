@@ -42,3 +42,20 @@
   --shadow-panel: 0 22px 80px rgb(0 0 0 / 24%);
   --glow-accent: 0 0 30px rgb(243 77 71 / 38%);
 }
+
+.site-shell {
+  --font-pixel: var(--font-pixelify), ui-monospace, monospace;
+  --font-reading: var(--font-body);
+  --type-pixel-label: 0.8rem;
+  --type-pixel-nav: 0.9rem;
+  --type-pixel-control: 1rem;
+  --type-pixel-heading: clamp(2rem, 3.4vw, 2.75rem);
+  --weight-pixel-regular: 500;
+  --weight-pixel-strong: 700;
+  --tracking-pixel: 0.025em;
+  --leading-pixel-ui: 1.3;
+  --leading-pixel-heading: 1.15;
+  --pixel-motion-fast: 150ms;
+  --pixel-motion-indicator: 300ms;
+  --pixel-motion-assemble: 480ms;
+}

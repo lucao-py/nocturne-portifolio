@@ -6,7 +6,7 @@ export default function NotFound() {
       <div className="empty-state">
         <h1>Página não encontrada</h1>
         <p>O endereço solicitado não corresponde a um conteúdo disponível.</p>
-        <Link href="/">Voltar à Home →</Link>
+        <Link className="action-link" href="/">Voltar à Home</Link>
       </div>
     </div>
   );

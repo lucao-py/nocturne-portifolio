@@ -7,10 +7,9 @@ export const portfolioContent = {
     articlesCta: "Ler artigos",
   },
   navigation: {
-    home: "Home",
+    home: "Início",
     projects: "Projetos",
     articles: "Artigos",
     about: "Sobre",
-    pending: "em breve",
   },
 } as const;

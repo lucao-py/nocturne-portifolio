@@ -48,7 +48,7 @@ export function AboutTimeline() {
           </div>
         </div>
         <div className="home-about">
-          <div className="home-about__map" aria-label="Percurso de Lucas em quatro etapas">
+          <div className="home-about__map" aria-label="Linha do tempo de Lucas em quatro etapas">
             <svg className="home-about__route" viewBox="0 0 1000 180" preserveAspectRatio="none" aria-hidden="true">
               <path d="M125 136 H375 V42 H625 V136 H875" />
             </svg>
@@ -73,13 +73,25 @@ export function AboutTimeline() {
             </ol>
           </div>
 
-          <section className="home-about__detail" id="sobre-conteudo" aria-live="polite" aria-atomic="true">
+          <section className="home-about__detail" id="sobre-conteudo" data-step={activeStep.id} aria-live="polite" aria-atomic="true">
             <div className="home-about__detail-inner" key={activeStep.id}>
-              <p className="home-about__detail-index">{String(activeIndex + 1).padStart(2, "0")} / {activeStep.label}</p>
-              <div>
+              <div className="home-about__detail-rail">
+                <p className="home-about__detail-index">{String(activeIndex + 1).padStart(2, "0")} / 04</p>
+                <span className="home-about__detail-rail-line" aria-hidden="true" />
+                <p className="home-about__detail-rail-label">{activeStep.label}</p>
+              </div>
+              <div className="home-about__detail-main">
+                <p className="home-about__detail-note">{activeStep.note}</p>
                 <h3>{activeStep.title}</h3>
-                <p className="home-about__detail-highlight">{activeStep.highlight}</p>
                 <p className="home-about__detail-description">{activeStep.description}</p>
+                {activeStep.markers.length > 0 && (
+                  <div className="home-about__detail-extra">
+                    {activeStep.markersLabel && <p className="home-about__detail-extra-label">{activeStep.markersLabel}</p>}
+                    <ul className="home-about__detail-markers">
+                      {activeStep.markers.map((marker) => <li key={marker}>{marker}</li>)}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </section>

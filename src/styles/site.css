@@ -126,31 +126,40 @@
   min-height: clamp(32rem, 60svh, 38rem);
   overflow: hidden;
   border-bottom: 1px solid rgb(243 77 71 / 30%);
-  background:
-    radial-gradient(ellipse 48% 80% at 82% 42%, rgb(36 61 96 / 30%), transparent 78%),
-    radial-gradient(ellipse 35% 70% at 5% 100%, rgb(201 46 55 / 10%), transparent 85%),
-    #070a10;
   scroll-margin-top: var(--site-header-offset);
 }
 
+.hero,
+.home-section--about {
+  background:
+    radial-gradient(ellipse 48% 80% at 82% 42%, rgb(36 61 96 / 30%), transparent 78%),
+    radial-gradient(ellipse 48% 80% at 82% 42%, rgb(36 61 96 / 30%), transparent 78%),
+    radial-gradient(ellipse 35% 70% at 5% 100%, rgb(201 46 55 / 10%), transparent 85%),
+    #070a10;
+}
+
 .hero::before,
-.hero::after {
+.hero::after,
+.home-about__pulse-layer::before,
+.home-about__pulse-layer::after {
   position: absolute;
   inset: 0;
   content: "";
   pointer-events: none;
 }
 
-.hero::before {
+.hero::before,
+.home-about__pulse-layer::before {
   z-index: 1;
   background-image: radial-gradient(circle, rgb(243 77 71 / 78%) 1.1px, transparent 1.6px);
   background-size: 22px 22px;
-  mask-image: radial-gradient(circle 125px at var(--hero-pointer-x, 70%) var(--hero-pointer-y, 50%), black 0 24%, rgb(0 0 0 / 70%) 55%, transparent 100%);
+  mask-image: radial-gradient(circle 125px at var(--pulse-pointer-x, 70%) var(--pulse-pointer-y, 50%), black 0 24%, rgb(0 0 0 / 70%) 55%, transparent 100%);
   opacity: 0;
   transition: opacity 260ms ease;
 }
 
-.hero::after {
+.hero::after,
+.home-about__pulse-layer::after {
   z-index: 0;
   background-image: radial-gradient(circle, rgb(121 214 228 / 19%) 0.7px, transparent 1px);
   background-size: 22px 22px;
@@ -200,11 +209,23 @@
 
 .hero__portrait {
   position: relative;
+  display: block;
   isolation: isolate;
   width: min(100%, 430px);
   aspect-ratio: 1;
   align-self: end;
   justify-self: end;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 55%, rgb(36 61 96 / 22%), rgb(201 46 55 / 6%) 48%, transparent 72%);
+  translate: 0 0.875rem;
+  cursor: pointer;
+  transition: box-shadow 220ms steps(3, end);
+}
+
+.hero__portrait:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -3px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .hero__portrait:hover { box-shadow: inset 0 0 0 1px rgb(121 214 228 / 30%), 0 0 18px rgb(243 77 71 / 9%); }
 }
 
 .hero__portrait::before,
@@ -215,9 +236,11 @@
 }
 
 .hero__portrait::before {
-  inset: 15% 4% 8%;
-  z-index: -1;
-  background: radial-gradient(ellipse at 50% 55%, rgb(36 61 96 / 28%), rgb(201 46 55 / 7%) 48%, transparent 72%);
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to bottom, transparent calc(100% - 6px), rgb(121 214 228 / 16%) calc(100% - 6px), rgb(243 77 71 / 58%) calc(100% - 2px), transparent 100%);
+  opacity: 0;
+  animation: hero-portrait-scan 1650ms steps(18, end) both;
 }
 
 .hero__portrait::after {
@@ -227,6 +250,11 @@
   background: linear-gradient(transparent, #070a10 95%);
 }
 
+.hero__portrait-mask {
+  position: absolute;
+  pointer-events: none;
+}
+
 .hero__portrait-image {
   display: block;
   width: 100%;
@@ -234,12 +262,36 @@
   object-fit: contain;
   object-position: center bottom;
   image-rendering: pixelated;
-  animation: hero-portrait-enter 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-@keyframes hero-portrait-enter {
-  from { opacity: 0; transform: translateY(12px); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero__portrait-image {
+    -webkit-mask-image: url("#hero-portrait-pixels");
+    mask-image: url("#hero-portrait-pixels");
+    animation: hero-portrait-settle 1800ms ease-out both;
+  }
+
+  .hero__pixel-block {
+    opacity: 0;
+    animation: hero-pixel-assemble 240ms steps(2, end) both;
+  }
+}
+
+@keyframes hero-pixel-assemble {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hero-portrait-settle {
+  from { opacity: 0.82; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-portrait-scan {
+  0% { opacity: 0; transform: translateY(-100%); }
+  12% { opacity: 0.7; }
+  82% { opacity: 0.55; }
+  100% { opacity: 0; transform: translateY(0); }
 }
 
 .hero__content::before {
@@ -409,7 +461,8 @@
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .hero[data-pulse-active="true"]::before { opacity: 1; }
+  .hero[data-pulse-active="true"]::before,
+  .home-section--about[data-pulse-active="true"] .home-about__pulse-layer::before { opacity: 1; }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -441,7 +494,8 @@
   .site-nav__link { min-height: 42px; font-size: 0.84rem; }
 
   .hero { min-height: 0; }
-  .hero::after { mask-image: linear-gradient(90deg, transparent, black); }
+  .hero::after,
+  .home-about__pulse-layer::after { mask-image: linear-gradient(90deg, transparent, black); }
   .hero__inner {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
@@ -462,9 +516,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero::before { display: none; }
+  .hero::before,
+  .home-about__pulse-layer::before { display: none; }
   .hero h1 { animation: none; }
+  .hero__portrait::before { animation: none; }
   .hero__portrait-image { animation: none; }
+  .hero__portrait { transition: none; }
   .site-nav__link,
   .site-nav__link::after,
   .site-action,

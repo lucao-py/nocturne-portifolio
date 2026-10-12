@@ -107,33 +107,6 @@
   overflow-wrap: anywhere;
 }
 
-.home-about {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem 2rem;
-  max-width: 900px;
-}
-
-.home-about__item {
-  min-width: 0;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.home-about__item h3 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 2vw, 1.5rem);
-  font-weight: 600;
-}
-
-.home-about__item p {
-  margin: 0.75rem 0 0;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  overflow-wrap: anywhere;
-}
-
 .catalog-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -419,7 +392,6 @@
 @media (max-width: 767px) {
   .content-page { min-height: calc(100svh - 114px); padding-top: 2.75rem; padding-bottom: 4rem; }
   .catalog-grid { grid-template-columns: minmax(0, 1fr); }
-  .home-about { grid-template-columns: minmax(0, 1fr); }
   .content-card__body { padding: 1.25rem; }
   .content-body { font-size: 1rem; }
 }

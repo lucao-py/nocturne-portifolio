@@ -25,7 +25,7 @@ export function ScrollReveal() {
       } else if (section.id === "artigos") {
         section.querySelectorAll<HTMLElement>(".home-article").forEach((article, index) => add(article, Math.min(index, 2) * 70));
       } else if (section.id === "sobre") {
-        section.querySelectorAll<HTMLElement>(".home-about__item").forEach((item, index) => add(item, index === 0 ? 180 : Math.min(index - 1, 2) * 70));
+        add(section.querySelector<HTMLElement>(".home-about"), 180);
       }
 
       add(section.querySelector<HTMLElement>(":scope > .empty-state"), 160);

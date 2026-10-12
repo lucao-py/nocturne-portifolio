@@ -1,20 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { connection } from "next/server";
+import { AboutTimeline } from "@/components/home/about-timeline";
 import { FeaturedProjectCard } from "@/components/home/featured-project-card";
 import { Hero } from "@/components/home/hero";
 import { RecentArticle } from "@/components/home/recent-article";
 import { ScrollReveal } from "@/components/home/scroll-reveal";
 import { EmptyState } from "@/components/ui/empty-state";
-import { aboutContent } from "@/content/about";
 import { portfolioContent } from "@/content/portfolio";
 import { listFeaturedProjects, listRecentArticles } from "@/lib/content/repository";
 
 export const metadata: Metadata = {
   description: `Projetos e artigos publicados no portfólio de ${portfolioContent.ownerName}.`,
 };
-
-const aboutOrder = ["apresentacao", "trajetoria", "formacao", "competencias", "contato"] as const;
 
 export default async function Home() {
   // Busca o conteúdo durante a requisição; cada consulta mantém a revalidação de 60 s.
@@ -68,26 +66,7 @@ export default async function Home() {
           )}
         </section>
 
-        <section className="home-section" id="sobre" aria-labelledby="sobre-titulo">
-          <div className="home-section__header">
-            <div>
-              <p className="home-section__index" aria-hidden="true">04 / Pessoal</p>
-              <h2 id="sobre-titulo">{aboutContent.title}</h2>
-            </div>
-            <Link className="action-link" href="/sobre">Ver página Sobre</Link>
-          </div>
-          <div className="home-about">
-            {aboutOrder.flatMap((id) => aboutContent.sections.filter((section) => section.id === id)).map((section, index) => (
-              <section className={`home-about__item home-about__item--${section.id}`} key={section.id}>
-                <span className="home-about__index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3>{section.title}</h3>
-                  <p>{section.content}</p>
-                </div>
-              </section>
-            ))}
-          </div>
-        </section>
+        <AboutTimeline />
       </div>
     </>
   );

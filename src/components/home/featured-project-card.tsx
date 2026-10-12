@@ -22,7 +22,7 @@ export function FeaturedProjectCard({ project, position, lead }: {
             src={project.coverImage.src}
             alt={project.coverImage.alt}
             fill
-            sizes={lead ? "(max-width: 767px) 100vw, (max-width: 1023px) 90vw, 600px" : "(max-width: 767px) 100vw, (max-width: 1023px) 45vw, 450px"}
+            sizes={lead ? "(max-width: 767px) 100vw, (max-width: 1023px) 90vw, (max-width: 1440px) 55vw, 750px" : "(max-width: 767px) 100vw, (max-width: 1023px) 45vw, 450px"}
           />
         ) : (
           <div className="home-project__fallback" aria-hidden="true">

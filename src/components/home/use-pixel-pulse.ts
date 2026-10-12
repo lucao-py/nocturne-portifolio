@@ -25,6 +25,7 @@ export function usePixelPulse<T extends HTMLElement>() {
 
     const observer = new IntersectionObserver(([entry]) => {
       visibleRef.current = entry.isIntersecting;
+      element.dataset.pulseVisible = String(entry.isIntersecting);
       if (!entry.isIntersecting) stopPulse(element);
     });
     observer.observe(element);
@@ -39,6 +40,7 @@ export function usePixelPulse<T extends HTMLElement>() {
       observer.disconnect();
       reducedMotion.removeEventListener("change", handleMotionChange);
       stopPulse(element);
+      delete element.dataset.pulseVisible;
     };
   }, [stopPulse]);
 

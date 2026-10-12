@@ -1,7 +1,7 @@
 .home-sections {
   position: relative;
   width: 100%;
-  padding: 0 0 clamp(3rem, 5vw, 5rem);
+  padding: 0;
   background:
     radial-gradient(ellipse 70% 24rem at 50% 0, rgb(36 61 96 / 25%), transparent 78%),
     var(--surface-base);
@@ -20,6 +20,7 @@
   width: min(100%, 1440px);
   margin-inline: auto;
   padding: clamp(4rem, 5.5vw, 6rem) clamp(1.25rem, 4vw, 4rem) 0;
+  scroll-margin-top: var(--site-header-offset);
 }
 
 .home-section + .home-section {
@@ -528,19 +529,30 @@
   margin-top: 0.7rem;
 }
 
-.home-section--about { isolation: isolate; }
+.home-section--about {
+  width: 100%;
+  isolation: isolate;
+  padding-inline: 0;
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.home-about__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
+}
+
+.home-section--about::before {
+  left: max(clamp(1.25rem, 4vw, 4rem), calc((100% - 1440px) / 2 + 4rem));
+}
 
 .home-about__pulse-layer {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-}
-
-.home-section--about > .home-section__header,
-.home-section--about > .home-about {
-  position: relative;
-  z-index: 1;
 }
 
 .home-about {
@@ -552,7 +564,6 @@
   position: relative;
   height: 260px;
   isolation: isolate;
-  background: linear-gradient(180deg, rgb(20 40 58 / 16%), transparent 88%);
 }
 
 .home-about__route {
@@ -772,11 +783,7 @@
   to { opacity: 1; scale: 1; }
 }
 
-.site-shell:has(.hero) .site-footer {
-  border-top-color: rgb(121 214 228 / 24%);
-  background: #0b1420;
-  font-size: 0.95rem;
-}
+.site-shell:has(.hero) .site-footer { border-top-color: rgb(121 214 228 / 24%); }
 
 .site-shell:has(.hero) .site-footer small {
   line-height: 1.45;

@@ -3,6 +3,9 @@
 
 html {
   color-scheme: dark;
+}
+
+html:has(.home-sections) {
   scroll-behavior: smooth;
 }
 

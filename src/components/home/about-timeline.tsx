@@ -40,59 +40,61 @@ export function AboutTimeline() {
   return (
     <section className="home-section home-section--about" id="sobre" aria-labelledby="sobre-titulo" ref={surfaceRef} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
       <div className="home-about__pulse-layer" aria-hidden="true" />
-      <div className="home-section__header">
-        <div>
-          <p className="home-section__index" aria-hidden="true">04 / Pessoal</p>
-          <h2 id="sobre-titulo">{aboutContent.title}</h2>
-        </div>
-      </div>
-      <div className="home-about">
-        <div className="home-about__map" aria-label="Percurso de Lucas em quatro etapas">
-          <svg className="home-about__route" viewBox="0 0 1000 180" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M125 136 H375 V42 H625 V136 H875" />
-          </svg>
-          <ol className="home-about__steps">
-            {aboutContent.steps.map((step, index) => (
-              <li className={`home-about__step home-about__step--${step.id}`} key={step.id}>
-                <button
-                  ref={(element) => { buttonRefs.current[index] = element; }}
-                  className="home-about__step-button"
-                  type="button"
-                  aria-pressed={activeIndex === index}
-                  aria-controls="sobre-conteudo"
-                  onClick={() => setActiveIndex(index)}
-                  onKeyDown={(event) => handleKeyDown(event, index)}
-                >
-                  <span className="home-about__node" aria-hidden="true" />
-                  <span className="home-about__number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="home-about__step-label">{step.label}</span>
-                </button>
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <section className="home-about__detail" id="sobre-conteudo" aria-live="polite" aria-atomic="true">
-          <div className="home-about__detail-inner" key={activeStep.id}>
-            <p className="home-about__detail-index">{String(activeIndex + 1).padStart(2, "0")} / {activeStep.label}</p>
-            <div>
-              <h3>{activeStep.title}</h3>
-              <p className="home-about__detail-highlight">{activeStep.highlight}</p>
-              <p className="home-about__detail-description">{activeStep.description}</p>
-            </div>
+      <div className="home-about__inner">
+        <div className="home-section__header">
+          <div>
+            <p className="home-section__index" aria-hidden="true">04 / Pessoal</p>
+            <h2 id="sobre-titulo">{aboutContent.title}</h2>
           </div>
-        </section>
+        </div>
+        <div className="home-about">
+          <div className="home-about__map" aria-label="Percurso de Lucas em quatro etapas">
+            <svg className="home-about__route" viewBox="0 0 1000 180" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M125 136 H375 V42 H625 V136 H875" />
+            </svg>
+            <ol className="home-about__steps">
+              {aboutContent.steps.map((step, index) => (
+                <li className={`home-about__step home-about__step--${step.id}`} key={step.id}>
+                  <button
+                    ref={(element) => { buttonRefs.current[index] = element; }}
+                    className="home-about__step-button"
+                    type="button"
+                    aria-pressed={activeIndex === index}
+                    aria-controls="sobre-conteudo"
+                    onClick={() => setActiveIndex(index)}
+                    onKeyDown={(event) => handleKeyDown(event, index)}
+                  >
+                    <span className="home-about__node" aria-hidden="true" />
+                    <span className="home-about__number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="home-about__step-label">{step.label}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </div>
 
-        <div className="home-about__closing">
-          <ul className="home-about__connections" aria-label="Conexões profissionais">
-            {aboutContent.connections.filter(({ url }) => url).map(({ label, url }, index) => (
-              <li key={label}>
-                <a className={`site-action ${index === 0 ? "site-action--primary" : "site-action--secondary home-about__connection--cyan"}`} href={url} target="_blank" rel="noopener noreferrer">
-                  {label}<span className="sr-only"> (abre em nova aba)</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <section className="home-about__detail" id="sobre-conteudo" aria-live="polite" aria-atomic="true">
+            <div className="home-about__detail-inner" key={activeStep.id}>
+              <p className="home-about__detail-index">{String(activeIndex + 1).padStart(2, "0")} / {activeStep.label}</p>
+              <div>
+                <h3>{activeStep.title}</h3>
+                <p className="home-about__detail-highlight">{activeStep.highlight}</p>
+                <p className="home-about__detail-description">{activeStep.description}</p>
+              </div>
+            </div>
+          </section>
+
+          <div className="home-about__closing">
+            <ul className="home-about__connections" aria-label="Conexões profissionais">
+              {aboutContent.connections.filter(({ url }) => url).map(({ label, url }, index) => (
+                <li key={label}>
+                  <a className={`site-action ${index === 0 ? "site-action--primary" : "site-action--secondary home-about__connection--cyan"}`} href={url} target="_blank" rel="noopener noreferrer">
+                    {label}<span className="sr-only"> (abre em nova aba)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

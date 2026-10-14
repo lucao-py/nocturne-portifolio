@@ -9,6 +9,7 @@ import { TagList } from "@/components/ui/tag-list";
 import { portfolioContent } from "@/content/portfolio";
 import { formatPublishedDate } from "@/lib/content/format";
 import { getArticleBySlug, getProjectsForArticle } from "@/lib/content/repository";
+import { isValidExternalUrl } from "@/lib/content/urls";
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -24,6 +25,8 @@ export default async function ArticlePage({ params }: Props) {
   const article = await getArticleBySlug((await params).slug);
   if (!article) notFound();
   const relatedProjects = await getProjectsForArticle(article.relatedProjectSlugs ?? []);
+  const repositoryLinks = relatedProjects.filter((project) => isValidExternalUrl(project.repositoryUrl))
+    .filter((project, index, projects) => projects.findIndex((item) => item.repositoryUrl === project.repositoryUrl) === index);
 
   return (
     <div className="editorial-shell editorial-shell--article article-reading">
@@ -45,6 +48,16 @@ export default async function ArticlePage({ params }: Props) {
               {article.publishedAt ? <time dateTime={article.publishedAt}>{formatPublishedDate(article.publishedAt)}</time> : null}
             </div>
             <TagList items={article.tags} label="Tags" />
+            {repositoryLinks.length ? (
+              <div className="article-reading__repositories" aria-label="Código dos projetos relacionados">
+                {repositoryLinks.map((project) => (
+                  <a key={project.slug} className="site-action site-action--primary" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">
+                    {repositoryLinks.length === 1 ? "Ver código no GitHub" : `GitHub · ${project.title}`}
+                    <span className="sr-only"> (abre em nova aba)</span>
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </header>
 
           {article.coverImage ? (

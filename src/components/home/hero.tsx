@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { portfolioContent } from "@/content/portfolio";
+import { aboutContent } from "@/content/about";
 import { usePixelPulse } from "@/components/home/use-pixel-pulse";
 
 const portraitGridSize = 9;
@@ -25,6 +26,7 @@ const glitchGroups = [
 
 export function Hero() {
   const { ownerName, hero } = portfolioContent;
+  const githubUrl = aboutContent.connections.find((connection) => connection.label === "GitHub")?.url;
   const { surfaceRef, onPointerMove, onPointerLeave } = usePixelPulse<HTMLElement>();
 
   return (
@@ -38,8 +40,8 @@ export function Hero() {
             )}
           </p>
           <div className="hero__actions">
-            <a className="site-action site-action--primary" href="#projetos">{hero.projectsCta}</a>
-            <a className="site-action site-action--secondary" href="#artigos">{hero.articlesCta}</a>
+            <a className="site-action site-action--primary" href="#artigos">{hero.articlesCta}</a>
+            {githubUrl ? <a className="site-action site-action--secondary" href={githubUrl} target="_blank" rel="noopener noreferrer">{hero.githubCta}<span className="sr-only"> (abre em nova aba)</span></a> : null}
           </div>
         </div>
         <a className="hero__portrait" href="#sobre" aria-label="Conheça mais sobre Lucas na seção Sobre">
@@ -90,7 +92,7 @@ export function Hero() {
         </a>
       </div>
 
-      <a className="hero__scroll-hint" href="#projetos">
+      <a className="hero__scroll-hint" href="#artigos">
         <span>Role para explorar</span>
       </a>
     </section>

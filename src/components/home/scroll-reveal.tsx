@@ -20,10 +20,9 @@ export function ScrollReveal() {
       add(header?.querySelector<HTMLElement>("h2") ?? null, 80);
       add(header?.querySelector<HTMLElement>("a") ?? null, 160);
 
-      if (section.id === "projetos") {
-        section.querySelectorAll<HTMLElement>(".home-project").forEach((card, index) => add(card, 200 + index * 70));
-      } else if (section.id === "artigos") {
-        section.querySelectorAll<HTMLElement>(".home-article").forEach((article, index) => add(article, Math.min(index, 2) * 70));
+      if (section.id === "artigos") {
+        add(section.querySelector<HTMLElement>(".home-article-feature"), 180);
+        section.querySelectorAll<HTMLElement>(".home-article").forEach((article, index) => add(article, 180 + Math.min(index, 2) * 70));
       } else if (section.id === "sobre") {
         add(section.querySelector<HTMLElement>(".home-about"), 180);
       }

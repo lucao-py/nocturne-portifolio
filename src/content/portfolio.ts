@@ -9,12 +9,11 @@ export const portfolioContent = {
       { text: "projetos", highlight: true },
       { text: " e descobertas pessoais.", highlight: false },
     ],
-    projectsCta: "Ver projetos",
     articlesCta: "Ler artigos",
+    githubCta: "GitHub",
   },
   navigation: {
     home: "Início",
-    projects: "Projetos",
     articles: "Artigos",
     about: "Sobre",
   },

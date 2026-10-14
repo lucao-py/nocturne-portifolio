@@ -13,7 +13,7 @@ export function RecentArticle({ article, position }: { article: Article; positio
         <span className="home-article__index" aria-hidden="true">{String(position).padStart(2, "0")}</span>
         {article.coverImage ? (
           <span className="home-article__cover">
-            <Image src={article.coverImage.src} alt={article.coverImage.alt} fill sizes="(max-width: 767px) 220px, 224px" />
+            <Image src={article.coverImage.src} alt={article.coverImage.alt} fill sizes="(max-width: 767px) 112px, (max-width: 1199px) 176px, 128px" />
           </span>
         ) : null}
         <div className="home-article__content">

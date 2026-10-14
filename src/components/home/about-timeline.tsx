@@ -43,7 +43,7 @@ export function AboutTimeline() {
       <div className="home-about__inner">
         <div className="home-section__header">
           <div>
-            <p className="home-section__index" aria-hidden="true">04 / Pessoal</p>
+            <p className="home-section__index" aria-hidden="true">03 / Pessoal</p>
             <h2 id="sobre-titulo">{aboutContent.title}</h2>
           </div>
         </div>

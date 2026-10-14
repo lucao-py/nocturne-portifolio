@@ -598,7 +598,7 @@
   .site-brand { align-self: flex-end; }
   .site-brand__name { font-size: 0.8rem; }
   .site-nav { width: 100%; }
-  .site-nav__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+  .site-nav__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
   .site-nav__link { min-height: 42px; font-size: 0.84rem; }
 
   .hero { min-height: 0; }

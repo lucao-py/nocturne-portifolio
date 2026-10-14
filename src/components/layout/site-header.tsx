@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { portfolioContent } from "@/content/portfolio";
 
-const sectionIds = ["inicio", "projetos", "artigos", "sobre"] as const;
+const sectionIds = ["inicio", "artigos", "sobre"] as const;
 
 export function SiteHeader() {
   const { ownerName, navigation } = portfolioContent;
@@ -14,7 +14,6 @@ export function SiteHeader() {
   const [activeHash, setActiveHash] = useState("#inicio");
   const items = [
     { id: "inicio", label: navigation.home },
-    { id: "projetos", label: navigation.projects },
     { id: "artigos", label: navigation.articles },
     { id: "sobre", label: navigation.about },
   ];
